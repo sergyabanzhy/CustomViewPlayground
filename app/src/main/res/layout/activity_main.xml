@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.sergzhy.cristmastree.TreeViewGroup
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.sergzhy.cristmastree.MainActivity">
+
+    <com.example.sergzhy.cristmastree.TreeView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tree"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/clear_button"
+        android:text="clear"/>
+    <Button
+        android:layout_width="19dp"
+        android:layout_height="50dp"
+        android:id="@+id/control_button"
+        android:text="start/stop"/>
+
+</com.example.sergzhy.cristmastree.TreeViewGroup>
