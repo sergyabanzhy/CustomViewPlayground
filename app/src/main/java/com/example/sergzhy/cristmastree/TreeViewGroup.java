@@ -26,9 +26,23 @@ public class TreeViewGroup extends ViewGroup {
     }
 
     @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return super.generateLayoutParams(attrs);
+    }
+
+    @Override
+    protected LayoutParams generateLayoutParams(LayoutParams p) {
+        return super.generateLayoutParams(p);
+    }
+
+    @Override
+    protected LayoutParams generateDefaultLayoutParams() {
+        return super.generateDefaultLayoutParams();
+    }
+
+    @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         Log.d(TAG, "onMeasure, width = " + View.MeasureSpec.getSize(widthMeasureSpec) +" , height" + View.MeasureSpec.getSize(heightMeasureSpec) +"");
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         View view = null;
         int requestedHeight = 0;
@@ -44,10 +58,12 @@ public class TreeViewGroup extends ViewGroup {
             }
         }
 
+
+
         if(!Utils.isPortrait(getContext()) && view != null) {
-            view.measure(widthMeasureSpec/2, View.MeasureSpec.getSize(heightMeasureSpec));
+            measureChild(view,widthMeasureSpec/2, View.MeasureSpec.getSize(heightMeasureSpec) );
         } else if (view != null){
-            view.measure(widthMeasureSpec, heightMeasureSpec - requestedHeight);
+            measureChild(view,widthMeasureSpec, heightMeasureSpec - requestedHeight );
         }
 
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);

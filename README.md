@@ -1,7 +1,6 @@
 # CustomViewPlayground
 This project has created with learning purposes and demonstrate how custom views can be implemented.
-
-The result work that has been done is below:
+There is the result:
 
 1. Portrait
 
