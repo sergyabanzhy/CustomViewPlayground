@@ -28,6 +28,7 @@ public class TreeViewGroup extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         Log.d(TAG, "onMeasure, width = " + View.MeasureSpec.getSize(widthMeasureSpec) +" , height" + View.MeasureSpec.getSize(heightMeasureSpec) +"");
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         View view = null;
         int requestedHeight = 0;
@@ -46,7 +47,7 @@ public class TreeViewGroup extends ViewGroup {
         if(!Utils.isPortrait(getContext()) && view != null) {
             view.measure(widthMeasureSpec/2, View.MeasureSpec.getSize(heightMeasureSpec));
         } else if (view != null){
-            view.measure(widthMeasureSpec, View.MeasureSpec.getSize(heightMeasureSpec) - requestedHeight);
+            view.measure(widthMeasureSpec, heightMeasureSpec - requestedHeight);
         }
 
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);

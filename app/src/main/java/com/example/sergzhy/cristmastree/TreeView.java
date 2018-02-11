@@ -1,7 +1,6 @@
 package com.example.sergzhy.cristmastree;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -59,59 +58,9 @@ public class TreeView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.d(TAG, "onMeasure, width = " + View.MeasureSpec.getSize(widthMeasureSpec) +" , height " + View.MeasureSpec.getSize(heightMeasureSpec) +"");
+        Log.d(TAG, "onMeasure, width = " + View.MeasureSpec.getSize(widthMeasureSpec) + " , height " + View.MeasureSpec.getSize(heightMeasureSpec) + "");
 
-        int desiredWidth = getLayoutParams().width;
-        int desiredHeight = getLayoutParams().height;
-
-        setMeasuredDimension(measureDimension(desiredWidth, widthMeasureSpec), measureDimension(desiredHeight, heightMeasureSpec));
-    }
-    private int measureDimension(int desiredSize, int measureSpec) {
-        Log.d(TAG, "measureDimension desiredSize = " + desiredSize +", measureSpec = " + measureSpec +"");
-
-        int result = 0;
-        int specMode = MeasureSpec.getMode(measureSpec);
-        int specSize = MeasureSpec.getSize(measureSpec);
-        Log.d(TAG, "measureDimension, specSize = " + specSize +"");
-
-        switch (specMode) {
-            case MeasureSpec.EXACTLY:
-                Log.d(TAG, "measureDimension EXACTLY, measureSpec = " + specSize +"");
-
-                if (desiredSize > specSize) {
-                    result = specSize;
-                } else if (desiredSize == ActionBar.LayoutParams.MATCH_PARENT){
-                    result = specSize;
-                } else if (desiredSize == ActionBar.LayoutParams.WRAP_CONTENT){
-                    result = specSize;
-                } else {
-                    result = desiredSize;
-                }
-
-                break;
-
-            case MeasureSpec.AT_MOST:
-                Log.d(TAG, "measureDimension AT_MOST");
-                result = specSize;
-
-                break;
-
-            case MeasureSpec.UNSPECIFIED:
-                Log.d(TAG, "measureDimension UNSPECIFIED");
-
-                if (desiredSize > specSize) {
-                    result = specSize;
-                } else if (desiredSize == ActionBar.LayoutParams.MATCH_PARENT){
-                    result = specSize;
-                } else if (desiredSize == ActionBar.LayoutParams.WRAP_CONTENT){
-                    result = specSize;
-                } else {
-                    result = desiredSize;
-                }
-
-                break;
-        }
-        return result;
+        setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
@@ -167,13 +116,10 @@ public class TreeView extends View {
         mBalls.add(BallFactory.create(x, y, (int) mRadius));
     }
 
-    private void scaleThreeBitmap(int width, int height) {
-        mTreeBitmap = Bitmap.createScaledBitmap(mTreeBitmap, width, height, false);
-    }
-
     private void resizeTreeBitmap(int width, int height) {
         Log.d(TAG, "resizeTreeBitmap, width = " + width +", height = " + height +"");
-        scaleThreeBitmap(View.MeasureSpec.getSize(width), View.MeasureSpec.getSize(height));
+
+        mTreeBitmap = Bitmap.createScaledBitmap(mTreeBitmap, width, height, false);
     }
 
     private void calculateSnowflakePosition() {
